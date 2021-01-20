@@ -23,23 +23,32 @@ const Root = () => {
     let [dataForChosenRegion] = chosenRegion ? covidData.infectedByRegion.filter(el => el.region === chosenRegion) : [];
     return (
         <div className={'pt-16 max-w-6xl p-6 mx-auto'}>
-            <h1 className={'block text-gray-800 font-semibold text-3xl mt-2 text-center'}>Statystyki</h1>
+            <h1 className={'block text-gray-800 font-semibold text-3xl mt-3 text-center'}>Koronawirus - dzienne statystki</h1>
+            <h2 className={'block text-gray-800 font-semibold text-3xl mt-2 text-center'}>Dane dla Polski</h2>
             {covidData &&
             <>
                 <section className={'py-3'}>
-                    <p className={'text-gray-800  text-lg py-3'}>Dane na
-                        dzień {covidData.lastUpdatedAtApify.substring(0, 10)}</p>
-                    <p className={'text-gray-800  text-lg py-3'}>Zakażonych: {covidData.infected} </p>
-                    <p className={'text-gray-800  text-lg py-3'}>Zakażonych dzisiaj: {covidData.infectedByRegion[0].infectedCount} </p>
-                    <p className={'text-gray-800  text-lg py-3'}>Zmarłych: {covidData.deceased} </p>
-                    <p className={'text-gray-800  text-lg py-3'}>Zmarłych dzisiaj: {covidData.infectedByRegion[0].deceasedCount} </p>
+                    <h3 className={'text-red-500  text-lg py-3 mt-16 text-center'}>Dane na
+                        dzień {covidData.lastUpdatedAtApify.substring(0, 10)}</h3>
+                    <div className={'py-3 grid grid-cols-2 justify-items-start items-center mx-auto bg-gray-200 p-5 grid-section'} style={{ maxWidth: '50%'}}>
+                        <p className={'text-gray-800  w-full text-lg py-3 '}>Zakażonych:</p>
+                        <p className={'text-gray-800 w-full text-lg py-3'}>{covidData.infected}</p>
+                    <p className={'text-gray-800 w-full text-lg py-3'}>Zakażonych dzisiaj: </p><p className={'text-gray-800 w-full text-lg py-3'}>{covidData.infectedByRegion[0].infectedCount} </p>
+                    <p className={'text-gray-800 w-full text-lg py-3'}>Zmarłych:  </p><p className={'text-gray-800 w-full text-lg py-3'}>{covidData.deceased}</p>
+                    <p className={'text-gray-800 w-full text-lg py-3'}>Zmarłych dzisiaj: </p><p className={'text-gray-800 w-full text-lg py-3'}>{covidData.infectedByRegion[0].deceasedCount}</p>
+                    </div>
                 </section>
                 <section>
+                    <p className={'text-gray-500  text-lg py-3 mt-8 text-center'}>Wybierz województwo</p>
                     <Dropdown infectedByRegion={covidData.infectedByRegion} setRegion={setRegion}/>
                     {chosenRegion && <>
-                        <p>Dane dla {chosenRegion}go:</p>
-                        <p>Zakażonych: {dataForChosenRegion?.infectedCount}</p>
-                        <p>Zmarłych: {dataForChosenRegion?.deceasedCount}</p>
+                        <p className={'text-center py-3'}>Dane dla {chosenRegion}go:</p>
+                        <div className={'py-3 grid grid-cols-2 justify-items-start items-center mx-auto bg-gray-200 p-5 grid-section2'} style={{ maxWidth: '50%'}}>
+                            <p className={'text-gray-800  w-full text-lg py-3 '}>Zakażonych: </p>
+                            <p className={'text-gray-800 w-full text-lg py-3'}>{dataForChosenRegion?.infectedCount}</p>
+                            <p className={'text-gray-800 w-full text-lg py-3'}>Zmarłych:  </p><p className={'text-gray-800 w-full text-lg py-3'}>{dataForChosenRegion?.deceasedCount}</p>
+                        </div>
+
                     </>}
 
                 </section>

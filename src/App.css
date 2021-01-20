@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+@media (max-width: 768px){
+  .grid-section,.grid-section2{
+    max-width: 100% !important;
+  }
+  .grid-section p,.grid-section2 p{
+    font-size:14px;
+  }
+}
+
+
+.grid-section p:not(:nth-child(n+7)){
+  border-bottom: 1px solid black;
+}
+
+.grid-section2 p:not(:nth-child(n+3)){
+  border-bottom: 1px solid black;
+}
